@@ -37,8 +37,6 @@ app.get('/users/:id', (req, res) => {
     }).catch((e) => {
         res.status(500).send()
     })
-
-    console.log('this is get users id', req.params)
 })
 
 app.post('/tasks', (req, res) => {
@@ -70,11 +68,8 @@ app.get('/tasks/:id', (req, res) => {
     }).catch((e) => {
         res.status(500).send()
     })
-
-    console.log('this is get tasks id', req.params)
 })
 
 app.listen(port, () => {
     console.log('Server is up on port ' + port);
 })
-
