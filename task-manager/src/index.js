@@ -13,3 +13,19 @@ app.use(taskRouter)
 app.listen(port, () => {
     console.log('Server is up on port ' + port);
 })
+
+// Securely Storing Passwords
+const bcrypt = require('bcryptjs')
+
+const myFunction = async () => {
+    const password = 'Chada12345!'
+    const hashedPassword = await bcrypt.hash(password, 8)
+
+    console.log('password ->', password);
+    console.log('hashedPassword ->', hashedPassword);
+
+    const isMatch = await bcrypt.compare('Chada12345!', hashedPassword)
+    console.log('isMatch ->', isMatch);
+}
+
+myFunction()
