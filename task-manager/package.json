@@ -1,7 +1,7 @@
 {
   "name": "task-manager",
   "version": "1.0.0",
-  "description": "",
+  "description": "103 Securely Storing Passwords: Part I",
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
