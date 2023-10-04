@@ -15,18 +15,30 @@ app.listen(port, () => {
     console.log('Server is up on port ' + port);
 })
 
-// Securely Storing Passwords
-const bcrypt = require('bcryptjs')
+// JSON Web Tokens --> npm i jsonwebtoken@8.4.0 
+const jwt = require('jsonwebtoken')
+
 
 const myFunction = async () => {
-    const password = 'Chada12345!'
-    const hashedPassword = await bcrypt.hash(password, 8)
+    const token = jwt.sign({ _id: 'abc123' }, 'thisismynewcourse', { expiresIn: '7 days' })
+    console.log('token ->', token)
 
-    console.log('password ->', password);
-    console.log('hashedPassword ->', hashedPassword);
-
-    const isMatch = await bcrypt.compare('Chada12345!', hashedPassword)
-    console.log('isMatch ->', isMatch);
+    const data = jwt.verify(token, 'thisismynewcourse')
+    console.log('token data->', data);
 }
+
+// Securely Storing Passwords
+// const bcrypt = require('bcryptjs')
+
+// const myFunction = async () => {
+//     const password = 'Chada12345!'
+//     const hashedPassword = await bcrypt.hash(password, 8)
+
+//     console.log('password ->', password);
+//     console.log('hashedPassword ->', hashedPassword);
+
+//     const isMatch = await bcrypt.compare('Chada12345!', hashedPassword)
+//     console.log('isMatch ->', isMatch);
+// }
 
 myFunction()
