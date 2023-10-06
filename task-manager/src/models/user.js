@@ -3,7 +3,6 @@ const validator = require('validator')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
-
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -35,6 +34,7 @@ const userSchema = new mongoose.Schema({
     },
     age: {
         type: Number,
+        default: 0,
         validate(value) {
             if (value < 0) {
                 throw new Error('Age must be a postive number')
