@@ -33,7 +33,7 @@ const pet = {
 pet.toJSON = function () {
     // console.log(this)
     // return this
-    return {}
+    return []
 }
 
 console.log(JSON.stringify(pet));
