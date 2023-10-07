@@ -5,7 +5,7 @@ const router = new express.Router()
 
 router.post('/users', async (req, res) => {
     const user = new User(req.body)
-
+    
     try {
         await user.save()
         const token = await user.generateAuthToken()
@@ -24,6 +24,7 @@ router.post('/users/login', async (req, res) => {
         res.status(400).send()
     }
 })
+
 
 router.post('/users/logout', auth, async (req, res) => {
     try {
