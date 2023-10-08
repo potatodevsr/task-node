@@ -30,18 +30,23 @@ const Task = require('./models/task')
 const User = require('./models/user')
 
 
-
 const main = async () => {
-    // const task = await Task.findById('5c2e505a3253e18a43e612e6')
-    // await task.populate('owner').execPopulate()
-    // console.log(task.owner)
+    try {
+        const user = await User.findById('652237bf3567501e9aef8d55');
 
-    const user = await User.findById('6521568057a43a649e0f7057')
-    await user.populate('tasks').execPopulate()
-    console.log('user.tasks ->', user.tasks)
+        if (user) {
+            await user.populate('tasks').execPopulate();
+            console.log('user.tasks ->', user.tasks);
+        } else {
+            console.log('User not found');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
 }
 
-main()
+main();
+
 // const pet = {
 //     name: 'Test'
 // }
