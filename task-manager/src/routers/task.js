@@ -27,14 +27,19 @@ router.get('/tasks', async (req, res) => {
     }
 })
 
-router.get('/tasks/:id', auth, async (req, res) => {
-    const _id = req.params.id
-
+router.get('/tasks/', auth, async (req, res) => {
     try {
         // const task = await Task.findById(_id)
         // const task = await Task.findOne({ _id, owner: req.user._id })
-        await req.user.populate('tasks').execPopulate()
-        res.send(req.user.tasks)
+        // await req.user.populate('tasks').execPopulate()
+        // res.send(req.user.tasks)
+
+        await req.user.populate({
+            patch: 'tasks',
+            match: {
+                completed: false
+            }
+        }).execPopulate()
     } catch (e) {
         res.status(500).send()
     }
