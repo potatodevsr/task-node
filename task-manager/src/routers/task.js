@@ -29,9 +29,14 @@ router.get('/tasks', async (req, res) => {
 
 router.get('/tasks/', auth, async (req, res) => {
     const match = {}
+    const sort = {}
 
     if (req.query.completed) {
         match.completed = req.query.completed === 'true'
+    }
+    if (req.query.sortBy) {
+        const parts = req.query.sortBy.split(':')
+        sort[parts[0]]
     }
 
     try {
@@ -40,13 +45,20 @@ router.get('/tasks/', auth, async (req, res) => {
             match,
             option: {
                 limit: parseInt(req.query.limit),
-                skip: parseInt(req.query.skip)
+                skip: parseInt(req.query.skip),
+                sort,
+                sort: {
+                    // createAt: -1
+                    completed: -1
+
+                }
             }
         }).execPopulate()
         res.send(req.user.tasks)
     } catch (e) {
         res.status(500).send()
     }
+
 })
 
 router.patch('/tasks/:id', auth, async (req, res) => {
