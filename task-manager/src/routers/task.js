@@ -58,7 +58,6 @@ router.get('/tasks/', auth, async (req, res) => {
     } catch (e) {
         res.status(500).send()
     }
-
 })
 
 router.patch('/tasks/:id', auth, async (req, res) => {
