@@ -1,8 +1,8 @@
-const MJ_ID = '70d3d45e7c4ce72d584afb24cc16dafd';
-const MJ_TOKEN = '9c499d4659d973ef28474ea87bba490c';
+// const MJ_ID = '70d3d45e7c4ce72d584afb24cc16dafd';
+// const MJ_TOKEN = '9c499d4659d973ef28474ea87bba490c';
 
 const Mailjet = require('node-mailjet');
-const mailjet = Mailjet.apiConnect(MJ_ID, MJ_TOKEN);
+const mailjet = Mailjet.apiConnect(process.env.MJ_ID, process.env.MJ_TOKEN);
 
 const sendWelcomeEmail = (email, name) => {
     mailjet
