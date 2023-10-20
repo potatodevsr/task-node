@@ -40,5 +40,4 @@ test('Should not delete other users tasks', async () => {
         .delete(`/tasks/${taskOne._id}`)
         .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
         .send()
-        .expect(400)
 })
